@@ -18,11 +18,26 @@ const schemaPath = join("database", "schema.sql");
 const schema = readFileSync(schemaPath, "utf-8");
 db.exec(schema);
 
+
+// Insert a new task
+const insertTask = db.prepare("INSERT INTO tasks (content) VALUES (?)");
+insertTask.run("Eat a banana");
+
+// Query and log all tasks
+const selectTasks = db.prepare("SELECT * FROM tasks");
+const tasks = selectTasks.all();
+console.log(tasks);
+
+
+// ...
+// createTask("Eat a banana");
+// const tasks = db.prepare("SELECT * FROM tasks").all();
+// console.log(tasks);
+
+// const result = createTask("Send mum flowers");
+// console.log(result);
+
 /**
  * Export the DB for use in other files
  */
 module.exports = db;
-
-createTask("Eat a banana");
-const tasks = db.prepare("SELECT * FROM tasks").all();
-console.log(tasks);
