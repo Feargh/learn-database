@@ -131,3 +131,6 @@ dist
 
 # sqlite file
 db.sqlite
+
+# sqlite test file
+test.sqlite
